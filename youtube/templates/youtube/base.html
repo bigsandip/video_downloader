@@ -1,0 +1,93 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'js/main.css'%}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    {% block title %}
+
+    {% endblock title%}
+    <meta name="description" content="A easy,fast and unlimited Video Downloader from different sites like Youtube,Facebook,Instagram,Vimeo and many more ">
+    <meta name="keywords" content="video Downloader,Video Downloader,instagram video downloader,Youtube video downloader,vimeo video downloader,dailymotion video downloader,facebook video downloader,">
+     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  </head>
+  <body>
+  <nav class="navbar  navbar-expand-lg navbar-light bg-info">
+  <a class="navbar-brand" href="{% url 'home' %}">EasyVideo4u</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">YouTubeVideo Downloader<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'anyhome' %}">AnyVideo Downloader</a>
+      </li>
+     <!--  <li class="nav-item">
+        <a class="nav-link " href="#">AnyVideo Downloader</a>
+      </li> -->
+    </ul>
+  </div>
+</nav>
+
+{% if messages %}
+    {% for message in messages %}
+      <p class="bg-success text-center mb-0">{{ message }}</li>
+    {% endfor %}
+{% endif %}
+
+        <!-- jumbotron block -->
+    {% block jumbotron %}
+    {% endblock jumbotron%}
+
+    <!-- extra block -->
+    {% block extra %}
+    {% endblock extra%}
+
+       <!-- content block -->
+    {% block content%}
+
+    {% endblock%}
+    <br>
+
+<section class="footer">
+  <hr>
+    <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <ul class="list-unstyled quick-links ">
+            <a class="links" href="{% url 'about'%}">About</a>|<a class="links" href="{% url 'policy'%}">Privacy Policy</a>|<a class="links" href="{% url 'terms'%}">Terms of Service</a>
+          </ul>
+          <p class="allright">Copyright 2020 &copy;.All Right Reserved</p>
+          <div class="social" >
+            <a href="https://www.facebook.com/sharer/sharer.php?u=www.easyvideo4u.com"target="_blank"><i class="fac fab fa-facebook-square fa-1x"></i></a>
+            <a href="http://twitter.com/share?text=check%20this%20out&url=https://easyvideo4u.com&hashtags=easyvideo4u"target="_blank"><i class="tw fab fa-twitter fa-1x"></i></a>
+            <a href="http://reddit.com/submit?url=www.easyvideo4u.com"target="_blank"><i class="re fab fa-reddit fa-1x"></i></a>
+            <a href="http://pinterest.com/pin/create/button/?url=www.easyvideo4u.com&media=&description=Click%20the%20link%20for%20awesome%20video%20downloader"target="_blank"><i class="pi fab fa-pinterest fa-1x"></i></a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

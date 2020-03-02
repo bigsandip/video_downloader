@@ -1,0 +1,29 @@
+      {% extends 'youtube/base.html'%}
+      {% block title %}
+      <title>Easyvideo4u|Home</title>
+      {% endblock title%}
+        {% block jumbotron %}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <h1 class="display-3 dis">Welcome to <b> Easyvideo4u.com </b></h1>
+            <p class="lead ml-4">Easiest,Fastest and Unlimited Video Downloader from any website.Copy and Paste the Youtube URL and see the magic.</p>
+            </div>
+        </div>
+        {% endblock jumbotron %}
+
+          {% block content%}
+          <div class="container" style="margin-bottom: 10%;width: 100%">
+            <div class="col-lg-12 col-md-12 col-sm-12 ">
+              <form class="form-group " style="margin:5% 8% 5% 8%;" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 {{form}}
+                <button class=" btn btn-primary btn-lg" type="submit">Download</button>
+                 <p>If you want to download videos from other sites then use <a href="{% url 'anyhome'%}">AnyVideo Downloader.</a></p>
+              </form>
+
+            </div>
+          </div>
+          {% endblock%}
+
+
+

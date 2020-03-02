@@ -1,0 +1,74 @@
+  {% extends 'youtube/base.html'%}
+  {% block title %}
+    <title>Easyvideo4u | Download</title>
+    {% endblock title%}
+    {% block jumbotron %}
+        <div class="jumbotron jumbotron-fluid" style="padding: 2rem 2rem;">
+
+            <div class="container">
+                <h1 title='Video title' style="text-align: center">{{ ad }} </h1>
+                <div class="borderr"></div>
+                <div class="eye ">
+                 <i title='views'class="far fa-eye fa-2x"></i>
+                 <h3 style="padding-left:5px;">{{views}}</h3>
+                </div>
+                <div class="borderrs"></div>
+                 <div class="len ">
+                 <i title='Length'class="far fa-clock fa-2x"></i>
+                 <h3 style="padding-left:5px;">{{length}} minutes</h3>
+                </div>
+
+
+            </div>
+        </div>
+  {% endblock jumbotron %}
+
+       {% block extra %}
+
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+             <div style="margin-left: 25%;">
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ id }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+             </div>
+             </div>
+             </div>
+        </div>
+      {% endblock extra %}
+
+    {% block content %}
+        <div class="container">
+            <form enctype=multipart/form-data action="" id='form1'  method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-10" style=" margin-top: 1%;margin-left: 8%">
+                        <h3 style="text-align: center">Available Quality</h3>
+                        <div class="input-group" style="width:50%; margin-left:25%">
+                          <select class="custom-select" id="type" name="type">
+                            {% if quality.videos_1080   %}
+                              <option selected value="1080p">1080p</option>
+                              <option value="720p">720p</option>
+                              <option value="other">Any</option>
+                            {% elif quality.videos_720   %}
+                              <!-- <option disabled value="1080p">1080p</option> -->
+                              <option selected value="720p">720p</option>
+                              <option value="other">Any</option>
+                            {% else %}
+                              <!-- <option disabled value="1080p">1080p</option> -->
+                              <!-- <option  disabled value="720p">720p</option> -->
+                              <option selected value="other">Any</option>
+                          {% endif %}
+                          </select>
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-download" aria-hidden="true"></i>Download </button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+{% endblock content%}
+
+
+
+

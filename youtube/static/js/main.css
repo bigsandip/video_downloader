@@ -1,0 +1,82 @@
+.footer{
+    background: lightblue;
+    min-height: 20vh;
+}
+ul .links{
+    /*background: red;*/
+    color:black;
+    font-weight: bolder;
+    padding: 5px;
+    /*margin-left: 300px;*/
+}
+ul.quick-links{
+    margin-left: 34%;
+}
+.allright{
+color: black;
+margin-left: 37%;
+
+}
+.social{
+margin-left: 44%;
+
+}
+.social a{
+padding: 3px;
+}
+.fac{
+    color:#3b5998;
+    /*background: black;*/
+}
+.tw{
+    color:#1da1f2;
+}
+.re{
+    color:#ff4500;
+}
+.pi{
+    color:#bd081c;
+}
+.navbar{
+    background: green;
+}
+.eye{
+    display: flex;
+    margin-left: 45%;
+    padding : 5px;
+}
+.borderr{
+    height: 3px;
+    width: 30%;
+    margin: auto;
+    background:black;
+}
+
+.len{
+    display: flex;
+    margin-left: 45%;
+    padding: 5px;
+}
+.borderrs{
+     height: 3px;
+    width: 30%;
+    margin: auto;
+    background:black;
+}
+.innpt{
+        margin:10% 0 0 0;
+        width:900px;
+        background:black;
+        justify-content: center;
+}
+
+.btn-primary{
+        padding:10px !important;
+        margin-bottom:3px !important;
+}
+.dis{
+    margin-left: 5%;
+}
+.leader{
+    margin-right: 9%
+}
