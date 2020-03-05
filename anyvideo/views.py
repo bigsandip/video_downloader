@@ -7,8 +7,12 @@ import os
 import re
 from django.contrib import messages
 from pyembed.core import PyEmbed
+from mimetypes import MimeTypes
+from urllib.request import pathname2url
+from django.http import HttpResponse
 # from pyoembed import oEmbed, PyOembedException
 URL_LIST = ''
+
 # Create your views here.
 
 
@@ -24,8 +28,32 @@ def home(request):
         return render(request, 'anyvideo/home.html', {'form': form})
 
 
+def serve_file_helper():
+    file_path = '/home/bigsandip/Downloads/video.mp4'
+    filename = os.path.basename(file_path)
+    mime = MimeTypes()
+    url = pathname2url(file_path)
+    mimetype, encoding = mime.guess_type(url)
+    f = open(file_path, 'rb')
+    # response = HttpResponse(f, content_type='application/force-download')
+    response = HttpResponse(f.read(), content_type=mimetype)
+    response['Content-Length'] = os.path.getsize(file_path)
+    # encodes the filename parameter of Content-Disposition header
+    # http://stackoverflow.com/a/20933751
+    response['Content-Disposition'] = \
+        "attachment; filename=\"%s\"; filename*=utf-8''%s" % \
+        (filename, filename)
+    # f.close()
+    # os.remove(file_path)
+    return response
+
+
+def remove_file():
+    os.remove('/home/bigsandip/Downloads/video.mp4')
+
+
 def anydownload(request):
-    MusicPath = os.path.expanduser("~") + "/Desktop/"
+    # MusicPath = os.path.expanduser("~") + "/Desktop/"
     if request.method == 'GET':
         ydl_opts = {
             # 'logger': MyLogger(),
@@ -47,16 +75,6 @@ def anydownload(request):
                 'videos_720': (f"youtube-dl -f 22 --skip-download  {URL_LIST}"),
                 'videos_normal': (f"youtube-dl -f best --skip-download  {URL_LIST} "),
             }
-
-            # 137  22  18    best 18 worse
-
-            # ("title       : {}".format((meta['title'])))
-            # ("upload date : {}".format((meta['upload_date'])))
-            # ("uploader    : {}".format((meta['uploader'])))
-            # ("uploader_id : {}".format((meta['uploader_id'])))
-            # ("channel_id  : {}".format((meta['channel_id'])))
-            # ("duration    : {}".format((meta['duration'])))
-            # ("description : {}".format((meta['description'])))
 
             return render(request, 'anyvideo/anydownload.html', context)
 
@@ -81,19 +99,15 @@ def anydownload(request):
             return render(request, "anyvideo/anydownload.html")
 
         else:
+            remove_file()
             ydl_opts = {
                 'format': 'best',
-                'outtmpl': '~/Downloads/%(title)s.%(ext)s',
+                'outtmpl': '~/Downloads/video.mp4',
                 'noplaylist': True,
             }
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([URL_LIST])
-
-            '''
-            f"youtube-dl -f best --output ~/Desktop/%(title)s.%(ext)s  -ik --format mp4  --yes-playlist  {URL_LIST}"'''
             messages.success(request, 'Video has been successfully downloaded !')
-            return redirect('anyhome')
+            return serve_file_helper()
+            # return redirect('anyhome')
         return render(request, "anyvideo/anydownload.html")
-
-# os.system("youtube-dl -f best --output ~/Downloads/%(title)s.%(ext)s  -cik --format mp4  --yes-playlist -a aa.txt ")
-# -f best forthe besst quality
